@@ -14,6 +14,7 @@ type posTrgm struct {
 	index int
 }
 
+// https://github.com/postgres/postgres/blob/004dbbd72f7505105a10d4e8ccb9a5a5d87125ed/contrib/pg_trgm/trgm_op.c#L628
 func calcWordSimilarity(s1, s2 string) float64 {
 	trg1 := generateTrgmOnly(s1)
 	trg2 := generateTrgmOnly(s2)
@@ -201,5 +202,5 @@ func calcSml(count, len1, len2 int) float64 {
 
 func main() {
 	res := calcWordSimilarity("banana", "bananas")
-	fmt.Printf("result is %f\n", res)
+	fmt.Printf("result is %f\n", res) // expected result is 0.833333
 }
